@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 22
       - name: Run scaffold tests
-        run: node --test tests/
+        run: node --test tests/scaffold.test.mjs
 
   preview-smoke:
     name: Preview deploy + smoke
