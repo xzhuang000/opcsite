@@ -1,19 +1,43 @@
 # opcsite
 
-Public one-page site for OPC (B6 dry-run). Currently a **scaffold placeholder**
-— real content lands post-G1 in the build task (kanban card t_2e939b6a).
+Public one-page site for OPC (B6 dry-run). Built to the frozen spec
+(`docs/spec.md`, spec-opcsite-v1-FROZEN-G1, SHA-256
+`5db4880101efc28f199d462a6f5d03cbf1adcb38a5489455e3b007fcf3ba66ae`).
 
 ## Stack
 
-Plain static HTML/CSS. No framework, no build step, no runtime dependencies.
-`vercel.json` pins `framework: null` so Vercel serves the files as-is.
+Plain static HTML/CSS + one small vanilla-JS renderer. No framework, no
+build step, no runtime dependencies, no external resources. `vercel.json`
+pins `framework: null` so Vercel serves the files as-is.
 
 ## Layout
 
-- `index.html` — placeholder page
-- `styles.css` — minimal placeholder styling
-- `tests/scaffold.test.mjs` — zero-dependency `node:test` suite
+- `index.html` — the page: hero, "What we are" blurb, Shipped Products
+  (empty state is the shipped HTML default), footer line
+- `styles.css` — minimal styling per spec §4
+- `products.json` — the ONLY place ships are added (see below)
+- `renderer.js` — fetches `products.json`, renders entries newest-first
+- `tests/spec.test.mjs` — zero-dependency `node:test` suite mapped to the
+  spec's FRs/DoDs
 - `.github/workflows/ci.yml` — static tests + preview deploy smoke
+- `docs/` — frozen spec (verbatim) and the G0 idea record
+
+## Adding a ship (the only edit ever needed)
+
+Append one entry to `products.json`:
+
+```json
+{
+  "name": "Example",
+  "description": "one line",
+  "url": "https://example.com/",
+  "shipped_at": "2026-09-07"
+}
+```
+
+`name` (non-empty), `description` (≤140 chars), and `shipped_at`
+(YYYY-MM-DD) are required; `url` is optional (absolute https URL, else the
+name renders as plain text). No other file changes.
 
 ## Deploy pipeline (Vercel Hobby, free)
 
@@ -21,10 +45,10 @@ Plain static HTML/CSS. No framework, no build step, no runtime dependencies.
    - `test` job: `node --test tests/`
    - `preview-smoke` job: deploys a **preview** (never production) with
      `vercel deploy --yes` and curls it until it returns 200 with the
-     placeholder marker; fails the PR otherwise. The preview URL is posted
-     as a PR comment.
+     "Shipped Products" content; fails the PR otherwise. The preview URL
+     is posted as a PR comment.
 2. Production deploys are done by the Lead per deployment.md — CI never
-   touches production.
+     touches production.
 
 ### Required repo secrets (one-time setup)
 
@@ -34,15 +58,7 @@ Plain static HTML/CSS. No framework, no build step, no runtime dependencies.
 | `VERCEL_ORG_ID` | optional — auto-discovered if unset |
 | `VERCEL_PROJECT_ID` | optional — auto-discovered if unset |
 
-The `preview-smoke` job fails closed if `VERCEL_TOKEN` is missing: an
-unprovable deploy is treated as a broken pipeline.
-
-## Plugging content in (for the build task)
-
-Replace `index.html` / `styles.css` and extend `tests/` — the deploy
-pipeline needs no changes. Do **not** add a framework; the spec freeze
-says minimal static. The Shipped Products section must be data-file
-driven (see spec) and render an honest empty state.
+The `preview-smoke` job fails closed if `VERCEL_TOKEN` is missing.
 
 ## Local checks
 

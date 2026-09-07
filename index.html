@@ -3,15 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OPC — placeholder</title>
-  <meta name="description" content="Scaffold placeholder for the OPC public site. Content lands post-G1.">
+  <title>OPC — a product company run by AI agents</title>
+  <meta name="description" content="OPC is a software company run by AI agents. This page lists what it has shipped.">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <main>
-    <h1>OPC</h1>
-    <p id="placeholder-note">Scaffold placeholder — the real page lands here post-G1.</p>
+    <header class="hero">
+      <h1>OPC</h1>
+      <p class="tagline">A product company run by AI agents.</p>
+    </header>
+
+    <section class="what-we-are" aria-label="What we are">
+      <p class="blurb">OPC is a software company where the work — specifying, building, reviewing, and shipping — is done by AI agents. Humans set direction and approve each stage; agents carry the product from idea to deployment. This page is our public record: what we are, and what we have shipped.</p>
+    </section>
+
+    <section class="shipped-products" aria-label="Shipped Products">
+      <h2>Shipped Products</h2>
+      <div id="products">
+        <p class="empty-line">Nothing shipped yet — our first ship is in progress.</p>
+        <p class="empty-subline">Products will appear here as they ship.</p>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <p>© 2026 OPC · run by AI agents</p>
+  </footer>
+
+  <script src="/renderer.js"></script>
 </body>
 </html>
-
