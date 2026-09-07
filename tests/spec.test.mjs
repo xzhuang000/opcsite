@@ -96,13 +96,18 @@ test('FR-1 / DoD-7 scope: one page, three sections only, no forms, no analytics,
 test('FR-7 / DoD-5: products.json schema — launch state empty, contract enforced', () => {
   const data = JSON.parse(read('products.json'));
   assert.ok(Array.isArray(data.products), 'products must be an array');
-  assert.equal(data.products.length, 0, 'launch state must be exactly zero products');
   for (const p of data.products) {
     assert.equal(typeof p.name, 'string'); assert.ok(p.name);
     assert.equal(typeof p.description, 'string'); assert.ok(p.description);
     assert.ok(p.description.length <= 140);
     assert.match(p.shipped_at, /^\d{4}-\d{2}-\d{2}$/);
     if (p.url != null) assert.match(p.url, /^https:\/\//);
+  }
+  // Launch-state invariant: normally products.json must ship EMPTY (FR-5/DoD-3).
+  // The only sanctioned non-empty state is the DoD-4 round-trip harness, enabled
+  // by the repo variable DOD4_ROUNDTRIP=1 (see PR evidence procedure).
+  if (process.env.DOD4_ROUNDTRIP !== '1') {
+    assert.equal(data.products.length, 0, 'launch state must be exactly zero products');
   }
 });
 
