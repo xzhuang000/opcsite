@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 22
       - name: Run scaffold tests
-        run: node --test tests/scaffold.test.mjs
+        run: node --test tests/
 
   preview-smoke:
     name: Preview deploy + smoke
@@ -73,7 +73,7 @@ jobs:
           done
           echo "Final status: $CODE"
           [ "$CODE" = "200" ] || { echo "::error::preview did not return 200"; exit 1; }
-          grep -qi "Scaffold placeholder" /tmp/page.html \
+          grep -qi "Shipped Products" /tmp/page.html \
             || { echo "::error::preview 200 but placeholder content missing"; exit 1; }
           echo "Smoke passed: preview is live and serving the placeholder."
       - name: Post preview URL on the PR
