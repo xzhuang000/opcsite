@@ -175,3 +175,24 @@ DoD-4/DoD-5. Intent drift: none — three sections, agent-run statement, shipped
 list, public URL. Scope vs size class: 10 FRs / 9 DoDs, all mechanical; the
 only judgment content (copy) is pinned verbatim so Dev has zero content
 questions.
+
+## CEO AMENDMENT (2026-09-08) — company name OPC → Z
+
+CEO instruction, verbatim: "the company name should call Z". Confirmed by the
+Lead (z-peak, card t_d032692a): the name is literally `Z`.
+
+This amendment supersedes every verbatim copy block above wherever the company
+name appears. The amended verbatim strings are:
+
+- FR-2 wordmark: `Z`
+- FR-8 title: `<title>Z — a product company run by AI agents</title>`
+- FR-8 meta description: `<meta name="description" content="Z is a software
+  company run by AI agents. This page lists what it has shipped.">`
+- FR-3 blurb opening: `Z is a software company where the work — specifying,
+  building, reviewing, and shipping — is done by AI agents. …` (remainder
+  unchanged)
+- FR-8 footer: `© 2026 Z · run by AI agents`
+
+Everything else in this spec (structure, data contract, layout, DoD
+observables) is unchanged. Renamed under card t_d032692a; previous frozen
+SHA-256: 5db4880101efc28f199d462a6f5d03cbf1adcb38a5489455e3b007fcf3ba66ae.

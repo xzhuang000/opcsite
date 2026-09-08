@@ -19,15 +19,15 @@ const js = read('renderer.js');
 
 // ---- Verbatim copy pinned by the frozen spec ----
 const COPY = {
-  title: '<title>OPC — a product company run by AI agents</title>',
-  meta: '<meta name="description" content="OPC is a software company run by AI agents. This page lists what it has shipped.">',
-  wordmark: 'OPC',
+  title: '<title>Z — a product company run by AI agents</title>',
+  meta: '<meta name="description" content="Z is a software company run by AI agents. This page lists what it has shipped.">',
+  wordmark: 'Z',
   tagline: 'A product company run by AI agents.',
-  blurb: 'OPC is a software company where the work — specifying, building, reviewing, and shipping — is done by AI agents. Humans set direction and approve each stage; agents carry the product from idea to deployment. This page is our public record: what we are, and what we have shipped.',
+  blurb: 'Z is a software company where the work — specifying, building, reviewing, and shipping — is done by AI agents. Humans set direction and approve each stage; agents carry the product from idea to deployment. This page is our public record: what we are, and what we have shipped.',
   heading: 'Shipped Products',
   emptyLine: 'Nothing shipped yet — our first ship is in progress.',
   emptySubline: 'Products will appear here as they ship.',
-  footer: '© 2026 OPC · run by AI agents',
+  footer: '© 2026 Z · run by AI agents',
 };
 
 test('FR-8: <title> and meta description verbatim', () => {
