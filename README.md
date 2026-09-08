@@ -1,8 +1,8 @@
 # opcsite
 
-Public one-page site for OPC (B6 dry-run). Built to the frozen spec
-(`docs/spec.md`, spec-opcsite-v1-FROZEN-G1, SHA-256
-`5db4880101efc28f199d462a6f5d03cbf1adcb38a5489455e3b007fcf3ba66ae`).
+Public one-page site for Z (B6 dry-run). Built to the frozen spec
+(`docs/spec.md`, spec-opcsite-v1-FROZEN-G1 + CEO AMENDMENT 2026-09-08, SHA-256
+`cd7368e464b6ea1615ee87eecae29e490c45917f5f43d43f8222daae20a5cb0e`).
 
 ## Stack
 
