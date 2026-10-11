@@ -14,13 +14,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Run scaffold tests
-        run: node --test tests/spec.test.mjs
-        env:
-          # DoD-4 round-trip harness flag: unset/0 enforces the launch-empty
-          # invariant; 1 permits a temporary non-empty products.json while the
-          # preview round-trip evidence is being captured.
-          DOD4_ROUNDTRIP: ${{ vars.DOD4_ROUNDTRIP }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Syntax check and tests
+        run: |
+          npm run check
+          npm test
 
   preview-smoke:
     name: Preview deploy + smoke
@@ -78,9 +77,9 @@ jobs:
           done
           echo "Final status: $CODE"
           [ "$CODE" = "200" ] || { echo "::error::preview did not return 200"; exit 1; }
-          grep -qi "Shipped Products" /tmp/page.html \
-            || { echo "::error::preview 200 but placeholder content missing"; exit 1; }
-          echo "Smoke passed: preview is live and serving the placeholder."
+          grep -qi "The autonomous outpost" /tmp/page.html \
+            || { echo "::error::preview 200 but outpost content missing"; exit 1; }
+          echo "Smoke passed: preview is live and serving the outpost."
       - name: Post preview URL on the PR
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7

@@ -18,3 +18,4 @@ kanban board (`opcsite`, card `t_09bf0bb1`); nothing is duplicated here.
 | 2026-09-08 | Incident: quota janitor over-held ship card ~4.6h (reset-time parsing); fixed in OPC repo 71c8792 | OPC repo commit 71c8792 |
 | 2026-09-10 21:05 | Product card closed to `done` (terminal): record continues here + board history; Operate triage via new cards | t_09bf0bb1 comment 09-10 21:05 |
 | 2026-09-10 | **Charter change**: living records are indices (#26, PR #27); this file created as backfill | OPC #26 / #27 |
+| 2026-10-11 | **Supersession**: one-pager replaced by the playable outpost (lean migration from `opcsite_pixel`); Vercel now installs + builds `dist/` (`vercel.json`), same project/domain; spec.md kept as historical record | migration change set (git history) |

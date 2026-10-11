@@ -1,36 +1,51 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Z — a product company run by AI agents</title>
-  <meta name="description" content="Z is a software company run by AI agents. This page lists what it has shipped.">
-  <link rel="stylesheet" href="/styles.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#191923">
+  <meta name="description" content="Welcome to Z, a one-person product company powered by AI agents. Explore our playable studio, meet the crew, and take a tiny product from idea to launch.">
+  <title>Z — A small company. A playable world.</title>
+  <link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="font" type="font/ttf" href="assets/silkscreen.ttf" crossorigin>
+  <link rel="preload" as="font" type="font/ttf" href="assets/space-grotesk-bold.ttf" crossorigin>
+  <script type="module" src="app.js"></script>
 </head>
 <body>
-  <main>
-    <header class="hero">
-      <h1>Z</h1>
-      <p class="tagline">A product company run by AI agents.</p>
-    </header>
-
-    <section class="what-we-are" aria-label="What we are">
-      <p class="blurb">Z is a software company where the work — specifying, building, reviewing, and shipping — is done by AI agents. Humans set direction and approve each stage; agents carry the product from idea to deployment. This page is our public record: what we are, and what we have shipped.</p>
-    </section>
-
-    <section class="shipped-products" aria-label="Shipped Products">
-      <h2>Shipped Products</h2>
-      <div id="products">
-        <p class="empty-line">Nothing shipped yet — our first ship is in progress.</p>
-        <p class="empty-subline">Products will appear here as they ship.</p>
-      </div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Z home"><svg viewBox="0 0 36 36" aria-hidden="true"><path fill="currentColor" d="M3 5h30v6H27v6h-6v6h-6v6h18v6H3v-6h6v-6h6v-6h6v-6H3z"/></svg><span>Z / ONE PERSON COMPANY<small>HUMAN DIRECTION. AGENT EXECUTION.</small></span></a>
+    <nav aria-label="Company navigation"><button data-open="about">The company <span>↗</span></button><button data-open="crew">Meet the crew <span>↗</span></button></nav>
+    <div class="top-tools"><button id="sound-button" class="icon-button" aria-pressed="false" aria-label="Turn sound on"><span id="sound-symbol">♪</span><span class="sound-state">OFF</span></button><button class="guide-button" data-open="guide"><span>?</span> Field guide</button></div>
+  </header>
+  <main class="play-layout">
+    <aside class="sidebar" aria-label="Mission journal">
+      <div class="sidebar-intro"><span class="eyebrow"><i></i> AN INDEPENDENT EXPERIMENT</span><h1>One human.<br> A whole <em>crew.</em></h1><p>We make products with AI agents.<br>Come build a little something with us.</p></div>
+      <div class="quest-header"><span class="pixel">YOUR FIRST MISSION</span><span class="quest-counter" id="quest-counter">0 / 4</span></div>
+      <h2 class="quest-name">From idea to orbit.</h2><p class="quest-description">Ship a tiny focus timer with the crew.<br>Four stops. One working product.</p>
+      <ol class="quest-list" id="quest-list">
+        <li><button data-visit="0"><span class="step-number">01</span><span><strong>Set the direction</strong><small>z-peak · LEAD</small></span><i>↗</i></button></li>
+        <li><button data-visit="1"><span class="step-number">02</span><span><strong>Shape the plan</strong><small>z-current · PM</small></span><i>↗</i></button></li>
+        <li><button data-visit="2"><span class="step-number">03</span><span><strong>Build the product</strong><small>z-timber · DEV</small></span><i>↗</i></button></li>
+        <li><button data-visit="3"><span class="step-number">04</span><span><strong>Review and launch</strong><small>z-lens · REVIEWER</small></span><i>↗</i></button></li>
+      </ol>
+      <button class="primary start-button" id="start-mission">Let’s build something <span>→</span></button>
+      <div class="inventory"><div><span class="spark-icon">✦</span><span><strong>Little sparks, big ideas.</strong><small>WALK OVER THE GLOWING CRYSTALS</small></span><b id="spark-count">0/6</b></div><div class="spark-track" aria-label="Collected idea sparks"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="sidebar-bottom"><span class="small-bot" aria-hidden="true">▰<i>••</i></span><p>Small by choice.<br><strong>Curious by nature.</strong></p><button data-open="about" aria-label="Read about Z">↗</button></div>
+    </aside>
+    <section class="world-panel" aria-label="The playable outpost">
+      <div class="world-heading"><span class="eyebrow">WORLD 01 / COME ON IN</span><h2>The autonomous outpost<span class="blink-dot"></span></h2><p>One person sets the course. A crew brings it to life.</p></div>
+      <div id="game"><div class="loading" id="loading"><span class="pixel">GROWING A LITTLE WORLD…</span><div></div></div></div>
+      <div class="world-tools"><button id="camera-button" aria-label="Toggle follow camera" title="Map / follow camera">⊞</button><button id="pause-button" aria-label="Pause the world" aria-pressed="false" title="Pause the world">Ⅱ</button></div>
+      <div class="world-location"><span class="pixel">Z OUTPOST</span><span id="coordinates">0456 / 0392</span><span>LOCAL TIME <b id="world-clock">18:42</b></span></div>
+      <div class="world-hint" id="world-hint"><span class="hint-icon">↖</span><span><strong>This world is yours to explore.</strong><small>Click the ground to walk. Click an agent to say hello.</small></span><button id="dismiss-hint" aria-label="Dismiss movement hint">×</button></div>
+      <div class="interact-wrap"><button id="interact-button" class="interact-button" hidden><kbd>E</kbd><span>Talk to z-peak</span><b>↗</b></button></div>
+      <div class="touch-controls" aria-label="Touch movement controls"><div class="dpad"><button data-direction="up" aria-label="Walk up">↑</button><button data-direction="left" aria-label="Walk left">←</button><button data-direction="down" aria-label="Walk down">↓</button><button data-direction="right" aria-label="Walk right">→</button></div></div>
+      <div class="paused-overlay" id="paused-overlay" hidden><span class="pixel">TAKE YOUR TIME.</span><p>Your little world is paused.</p><button class="primary" id="resume-button">Back to the adventure →</button></div>
+      <div class="launch-overlay" id="launch-overlay" hidden><span class="pixel" id="launch-label">ALL SYSTEMS GO.</span><p>One small product. A whole new possibility.</p></div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <p>© 2026 Z · run by AI agents</p>
-  </footer>
-
-  <script src="/renderer.js"></script>
+  <footer class="game-footer"><div class="controls-legend"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> MOVE</span><span><kbd>E</kbd> INTERACT</span><span>↖ CLICK TO WALK</span></div><span class="footer-note">HUMAN-LED. AGENT-POWERED. <i>✳</i></span><button data-open="about" class="text-mode">Just here for the story? ↗</button></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close-button" aria-label="Close dialog">×</button><div id="dialog-content"></div></dialog>
+  <noscript><div class="no-js"><h2>Z is a one-person product company powered by AI agents.</h2><p>One human sets the direction. z-peak leads the conversation, z-current plans, z-timber builds, and z-lens reviews. Enable JavaScript to explore the playable studio.</p></div></noscript>
 </body>
 </html>
